@@ -10,12 +10,12 @@ class SpellPage extends GetView<SpellController> {
       appBar: AppBar(
         title: const Text('Spells'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.favorite),
-            onPressed: () {
-              Get.toNamed('/favorites');
-            },
-          ),
+          // IconButton(
+          //   icon: const Icon(Icons.favorite, color: Colors.lightBlue),
+          //   onPressed: () {
+          //     Get.toNamed('/favorites');
+          //   },
+          // ),
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
@@ -52,17 +52,29 @@ class SpellPage extends GetView<SpellController> {
           },
         );
       }),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Characters'),
-          BottomNavigationBarItem(icon: Icon(Icons.auto_fix_high), label: 'Spells'),
-        ],
-        onTap: (index) {
-          if (index == 0) {
-            Get.offNamed('/characters');
-          }
-        },
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Get.toNamed('/favorites');
+          },
+          backgroundColor:Colors.lightBlue,
+          child: const Icon(Icons.favorite, color: Colors.white),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 200.0, vertical: 12.0,),
+        child: SizedBox(
+          height: 48,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+              elevation: 20,
+            ),
+            onPressed: () {
+              Get.offNamed('/characters');
+            },
+            child: const Text('Characters', style: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold)),
+          ),
+        ),
       ),
     );
   }

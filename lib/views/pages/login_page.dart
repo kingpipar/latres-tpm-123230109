@@ -30,7 +30,7 @@ class LoginPage extends GetView<LoginController> {
                 labelText: 'Password',
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
-                  icon: Icon(controller.isObscure.value ? Icons.visibility : Icons.visibility_off),
+                  icon: Icon(controller.isObscure.value ? Icons.visibility_off : Icons.visibility),
                   onPressed: controller.togglePasswordVisibility,
                 ),
               ),

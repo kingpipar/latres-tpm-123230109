@@ -36,17 +36,21 @@ class CharPage extends GetView<CharController> {
           },
         );
       }),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Characters'),
-          BottomNavigationBarItem(icon: Icon(Icons.auto_fix_high), label: 'Spells'),
-        ],
-        onTap: (index) {
-          if (index == 1) {
-            Get.offNamed('/spells');
-          }
-        },
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 200.0, vertical: 12.0,),
+        child: SizedBox(
+          height: 48,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+              elevation: 20,
+            ),
+            onPressed: () {
+              Get.offNamed('/spells');
+            },
+            child: const Text('Spells', style: TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold)),
+          ),
+        ),
       ),
     );
   }
