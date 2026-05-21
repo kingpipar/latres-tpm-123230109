@@ -10,7 +10,7 @@ class SpellController extends GetxController {
   var isLoading = true.obs;
   late Box<Spell> favBox;
   StreamSubscription? _favSub;
-  // reactive set of favorite spell indices so UI can update immediately
+  // reactive set of favorite spell
   var favoriteIds = <int>{}.obs;
 
   @override
@@ -24,7 +24,7 @@ class SpellController extends GetxController {
     } catch (_) {
       favoriteIds.clear();
     }
-    // listen to Hive box events so UI updates when favorites change elsewhere
+    // listen to Hive box events 
     _favSub = favBox.watch().listen((event) {
       try {
         final key = event.key as int?;

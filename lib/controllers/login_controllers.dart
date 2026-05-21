@@ -10,7 +10,7 @@ class LoginController extends GetxController {
   }
 
   Future<void> login(String username, String password) async {
-    // Hardcoded logic
+    // hardcoded login
     if (username == 'fare' && password == '109') {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool('isLogged', true);
