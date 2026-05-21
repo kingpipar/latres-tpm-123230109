@@ -37,7 +37,7 @@ class CharPage extends GetView<CharController> {
         );
       }),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 200.0, vertical: 12.0,),
+        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0,),
         child: SizedBox(
           height: 48,
           child: ElevatedButton(

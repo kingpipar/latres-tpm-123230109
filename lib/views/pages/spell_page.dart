@@ -61,7 +61,7 @@ class SpellPage extends GetView<SpellController> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 200.0, vertical: 12.0,),
+        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0,),
         child: SizedBox(
           height: 48,
           child: ElevatedButton(
