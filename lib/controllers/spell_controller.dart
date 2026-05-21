@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -8,6 +9,7 @@ class SpellController extends GetxController {
   var spells = <Spell>[].obs;
   var isLoading = true.obs;
   late Box<Spell> favBox;
+  StreamSubscription? _favSub;
   // reactive set of favorite spell indices so UI can update immediately
   var favoriteIds = <int>{}.obs;
 
@@ -22,6 +24,18 @@ class SpellController extends GetxController {
     } catch (_) {
       favoriteIds.clear();
     }
+    // listen to Hive box events so UI updates when favorites change elsewhere
+    _favSub = favBox.watch().listen((event) {
+      try {
+        final key = event.key as int?;
+        if (key == null) return;
+        if (event.deleted == true) {
+          favoriteIds.remove(key);
+        } else {
+          favoriteIds.add(key);
+        }
+      } catch (_) {}
+    });
 
     fetchSpells();
   }
@@ -56,5 +70,11 @@ class SpellController extends GetxController {
       favoriteIds.add(idx);
       Get.snackbar('Favorite Added', '${spell.spell} added to favorites', backgroundColor: Colors.green, colorText: Colors.white);
     }
+  }
+
+  @override
+  void onClose() {
+    _favSub?.cancel();
+    super.onClose();
   }
 }
